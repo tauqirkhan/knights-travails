@@ -42,17 +42,26 @@
 //   }
 // }
 
+import { Graph } from "./graph.js";
 import { BuildKnightGraph } from "./buildKnightGraph.js";
 import { knightBFS } from "./bfs.js";
 
 function KnightTravails(startMoveGrid, endMoveGrid) {
-  const graph = BuildKnightGraph();
-  const adjacentList = graph.getAdjacentList();
+  const graph = Graph();
+  const knightGraph = BuildKnightGraph(graph);
+  const adjacentList = knightGraph.getAdjacentList();
 
-  const result = knightBFS(startMoveGrid, endMoveGrid, adjacentList);
-
-  return result;
+  const path = knightBFS(startMoveGrid, endMoveGrid, adjacentList);
+  if (path) {
+    console.log(`Path from ${startMoveGrid} to ${endMoveGrid}:`);
+    console.log(`Made in ${path.length - 1} moves, Here's your path:`);
+    path.forEach((path) => {
+      console.log(path);
+    });
+  } else {
+    console.log(`No path found from ${startMoveGrid} to ${endMoveGrid}`);
+  }
+  return path;
 }
 
-let move = KnightTravails([0, 0], [7, 7]);
-console.log(move);
+export { KnightTravails };

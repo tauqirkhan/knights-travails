@@ -5,11 +5,8 @@
   Check if newRow and newColumn is the graph, if it is
   create and add newVertex, also create it's inDegree to vertex
 */
-import { Graph } from "./graph.js";
 
-function BuildKnightGraph() {
-  const graph = Graph();
-
+function BuildKnightGraph(graph) {
   const direction = [
     [2, 1],
     [1, 2],

@@ -22,8 +22,6 @@ function knightBFS(start, target, adjacentList) {
   while (queue.length > 0) {
     const [current, path] = queue.shift();
 
-    console.log("current add", current);
-    console.log("path add", path);
     for (const neighbour of adjacentList[current]) {
       if (!visited.includes(neighbour)) {
         if (arraysEqual(neighbour, target)) return [...path, neighbour];
