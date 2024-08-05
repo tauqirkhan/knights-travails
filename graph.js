@@ -12,13 +12,13 @@ function Graph() {
   }
 
   //For only directional edge
-  function addEdge(source, destination) {
+  function addDirEdge(source, destination) {
     if (adjacentList[source] && adjacentList[destination]) {
       adjacentList[source].push(destination);
     }
   }
 
-  return { getAdjacentList, addVertex, addEdge };
+  return { getAdjacentList, addVertex, addDirEdge };
 }
 
 export { Graph };

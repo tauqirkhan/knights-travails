@@ -11,45 +11,48 @@
         will stop on along the way
 */
 
-import { Graph } from "./graph.js";
+// function buildKnightGraph() {
+//   const direction = [
+//     [2, 1],
+//     [1, 2],
+//     [-2, -1],
+//     [-1, -2],
+//     [2, -1],
+//     [1, -2],
+//     [-2, 1],
+//     [-1, 2],
+//   ];
+
+//   for (let row = 0; row < 8; row++) {
+//     for (let column = 0; column < 8; column++) {
+//       const vertex = [row, column];
+//       graph.addVertex(vertex);
+
+//       for (let [dx, dy] of direction) {
+//         const newRow = row + dx;
+//         const newColumn = column + dy;
+
+//         if (newColumn >= 0 && newColumn < 8 && newRow >= 0 && newRow < 8) {
+//           const newVertex = [newRow, newColumn];
+//           graph.addVertex(newVertex);
+//           graph.addDirEdge(vertex, newVertex);
+//         }
+//       }
+//     }
+//   }
+// }
+
+import { BuildKnightGraph } from "./buildKnightGraph.js";
+import { knightBFS } from "./bfs.js";
 
 function KnightTravails(startMoveGrid, endMoveGrid) {
-  const graph = Graph();
+  const graph = BuildKnightGraph();
   const adjacentList = graph.getAdjacentList();
 
-  function buildKnightGraph() {
-    const direction = [
-      [2, 1],
-      [1, 2],
-      [-2, -1],
-      [-1, -2],
-      [2, -1],
-      [1, -2],
-      [-2, 1],
-      [-1, 2],
-    ];
+  const result = knightBFS(startMoveGrid, endMoveGrid, adjacentList);
 
-    for (let row = 0; row < 8; row++) {
-      for (let column = 0; column < 8; column++) {
-        const vertex = `[${row}, ${column}]`;
-        graph.addVertex(vertex);
-
-        for (let [dx, dy] of direction) {
-          const newRow = row + dx;
-          const newColumn = column + dy;
-
-          if (newRow >= 0 && newRow <= 7 && newColumn >= 0 && newColumn <= 7) {
-            const newVertex = `[${newRow}, ${newColumn}]`;
-            graph.addVertex(newVertex);
-            graph.addEdge(vertex, newVertex);
-          }
-        }
-      }
-    }
-  }
-
-  buildKnightGraph();
-  console.log(adjacentList);
+  return result;
 }
 
-KnightTravails([3, 3]);
+let move = KnightTravails([0, 0], [7, 7]);
+console.log(move);
